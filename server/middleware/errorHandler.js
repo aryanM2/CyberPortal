@@ -1,16 +1,12 @@
-/**
- * Global Error Handler Middleware
- * Catches and formats all errors in the application
- */
+
 const errorHandler = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
   error.statusCode = err.statusCode || 500;
 
-  // Log error for debugging
+
   console.error('Error:', err);
 
-  // Mongoose bad ObjectId
   if (err.name === 'CastError') {
     const message = 'Resource not found';
     error = {
@@ -19,7 +15,7 @@ const errorHandler = (err, req, res, next) => {
     };
   }
 
-  // Mongoose duplicate key
+
   if (err.code === 11000) {
     const field = Object.keys(err.keyPattern)[0];
     const message = `${field.charAt(0).toUpperCase() + field.slice(1)} already exists`;
@@ -29,7 +25,7 @@ const errorHandler = (err, req, res, next) => {
     };
   }
 
-  // Mongoose validation error
+
   if (err.name === 'ValidationError') {
     const message = Object.values(err.errors)
       .map((val) => val.message)

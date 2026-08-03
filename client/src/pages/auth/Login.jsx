@@ -57,7 +57,13 @@ const Login = () => {
       }, 500);
     } catch (error) {
       console.error('Login error:', error);
-      toast.error(error.response?.data?.message || error.message || 'Login failed');
+      const errorMessage =
+        error.response?.data?.errors?.[0]?.msg ||
+        error.response?.data?.errors?.[0]?.message ||
+        error.response?.data?.message ||
+        error.message ||
+        'Invalid email or password';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

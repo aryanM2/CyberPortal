@@ -1,9 +1,6 @@
 const { validationResult } = require('express-validator');
 
-/**
- * Validation Middleware
- * Checks for validation errors from express-validator
- */
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -24,11 +21,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-/**
- * Async Handler Wrapper
- * Wraps async route handlers to catch errors
- * @param {Function} fn - Async function to wrap
- */
+
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };

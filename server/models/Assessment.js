@@ -100,9 +100,7 @@ assessmentSchema.index({ status: 1, createdAt: -1 });
 assessmentSchema.index({ preferredDate: 1 });
 assessmentSchema.index({ assessmentType: 1 });
 
-/**
- * Virtual for formatted assessment type
- */
+
 assessmentSchema.virtual('assessmentTypeFormatted').get(function () {
   if (!this.assessmentType) return '';
   return this.assessmentType
@@ -111,9 +109,7 @@ assessmentSchema.virtual('assessmentTypeFormatted').get(function () {
     .join(' ');
 });
 
-/**
- * Virtual for formatted status
- */
+
 assessmentSchema.virtual('statusFormatted').get(function () {
   if (!this.status) return '';
   return this.status
@@ -122,7 +118,6 @@ assessmentSchema.virtual('statusFormatted').get(function () {
     .join(' ');
 });
 
-// Ensure virtuals are included in JSON
 assessmentSchema.set('toJSON', { virtuals: true });
 assessmentSchema.set('toObject', { virtuals: true });
 

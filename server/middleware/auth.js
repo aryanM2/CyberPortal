@@ -9,7 +9,7 @@ const { verifyToken } = require('../config/jwt');
 const protect = async (req, res, next) => {
   let token;
 
-  // Check for token in Authorization header
+
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
@@ -70,10 +70,7 @@ const protect = async (req, res, next) => {
   }
 };
 
-/**
- * Optional Authentication Middleware
- * Attaches user to request if token is valid, but doesn't require authentication
- */
+
 const optionalAuth = async (req, res, next) => {
   let token;
 
@@ -88,7 +85,7 @@ const optionalAuth = async (req, res, next) => {
     try {
       const decoded = verifyToken(token);
       const user = await User.findById(decoded.id).select('-password');
-      
+
       if (user && user.isActive) {
         req.user = user;
       }

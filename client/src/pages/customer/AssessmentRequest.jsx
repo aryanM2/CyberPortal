@@ -4,9 +4,7 @@ import { ArrowLeft, Building, User, Mail, Phone, FileText, Calendar } from 'luci
 import toast from 'react-hot-toast';
 import assessmentService from '../../services/assessmentService';
 import Button from '../../components/common/Button';
-import Input from '../../components/common/Input';
-import Textarea from '../../components/common/Input';
-import Select from '../../components/common/Input';
+import Input, { Textarea, Select } from '../../components/common/Input';
 import Card from '../../components/common/Card';
 import CardBody from '../../components/common/Card';
 
